@@ -6,7 +6,7 @@ int index,i,n,j;
 char a[100][100],t[100],min[100];
 printf("enter limit");
 scanf("%d",&n);
-printf("enter n numbers");
+printf("enter n name");
 for(i=0;i<n;i++)
 scanf("%s",&a[i]);
 
