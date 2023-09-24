@@ -1,0 +1,215 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define nodealloc (node *)malloc(sizeof(node));
+typedef struct node
+{
+int data;
+struct node *next,*prev;
+}node;
+node *create(node *list)
+{
+node *newnode,*temp;
+int i,n;
+printf("enter limit");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+newnode=nodealloc;
+printf("enter vaue in list");
+scanf("%d",&newnode->data);
+newnode->next=NULL;
+if(list==NULL)
+{
+list=newnode;
+temp=newnode;
+}
+else
+{
+temp->next=newnode;
+temp=newnode;
+}
+}
+return list;
+}
+node *create1(node *list1)
+{
+node *newnode,*temp;
+int i,n;
+printf("enter limit for 2 list");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+newnode=nodealloc;
+printf("enter vaue in list");
+scanf("%d",&newnode->data);
+newnode->next=NULL;
+if(list1==NULL)
+{
+list1=newnode;
+temp=newnode;
+}
+else
+{
+temp->next=newnode;
+temp=newnode;
+}
+}
+return list1;
+}
+node *sortlist(node *list)
+{
+node *temp1,*temp2, *t,*newNode;
+	int n,k,i,j;
+	for(i=n-2;i>=0;i--)
+	{
+		temp1=list;
+		temp2=temp1->next;
+		for(j=0;j<=i;j++)
+		{
+			if(temp1->data > temp2->data)
+			{
+				k=temp1->data;
+			temp1->data=temp2->data;
+				temp2->data=k;
+			}
+			temp1=temp2;
+			temp2=temp2->next;
+		}
+	}
+	printf("Sorted order is: \n");
+	t=list;
+	while(t!=NULL)
+	{
+		printf("%d\t",t->data);
+		t=t->next;
+	}
+}
+node *sumavg(node *list)
+{
+node *temp;
+int sum=0,avg=0,cnt=0;
+for(temp=list;temp!=NULL;temp=temp->next)
+{
+cnt++;
+sum=sum+temp->data;
+}
+avg=sum/cnt;
+printf("sum=%d and avg=%d",sum,avg);
+}
+
+node *occur(node * list)
+{
+node *temp;
+int cnt=0,num;
+printf("enter num to find");
+scanf("%d",&num);
+for(temp=list;temp!=NULL;temp=temp->next)
+{
+if(num==temp->data)
+{
+cnt++;
+}
+}
+printf("occur of nuber=%d",cnt);
+}
+node *foccur(node *list)
+{
+node *temp;
+int t,t1;
+for(temp=list;temp->next!=NULL;temp=temp->next);
+t=list->data;
+t1=temp->data;
+printf("first occur=%d and last occur=%d",t,t1);
+}
+node *large(node *list)
+{
+node *temp,*temp1;
+temp1=list;
+for(temp=list;temp!=NULL;temp=temp->next)
+{
+if(temp1->data<temp->data)
+{
+temp1->data=temp->data;
+}
+}
+printf("largest number=%d",temp1->data);
+}
+node *even(node *list)
+{
+node *temp;
+int t1;
+for(temp=list;temp!=NULL;temp=temp->next)
+{
+if(temp->data%2==0)
+{
+t1=temp->data;
+printf("%d\t",t1);
+}
+}
+}
+
+node *check(node *list,node *list1)
+{
+node *temp1,*temp2;
+int flag=0;
+for(temp1=list;temp1!=NULL;temp1=temp1->next)
+{
+ for(temp2=list1;temp2!=NULL;temp2=temp2->next)
+ {
+ if(temp1->data==temp2->data)
+ {
+ flag=1;
+ }
+ }
+}
+if(flag==1)
+printf("equal");
+else
+printf("not equal");
+}
+
+
+void disp(node *list)
+{
+node *temp;
+for(temp=list;temp!=NULL;temp=temp->next)
+printf("%d\t",temp->data);
+}
+int main()
+{
+node *list=NULL,*temp3,*list1;
+int i,num,ch,pos;
+
+do
+{
+printf("enter choice\n1.create\n2.disp\n3.sortnode\n4.sumavg\n5.occur");
+printf("\n6.first and last occur\n7.large\n8.even");
+printf("\n9.check two link list=\n");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:list=create(list);
+break;
+case 2:disp(list);
+break;
+
+case 3:sortlist(list);
+break;
+
+case 4:sumavg(list);
+break;
+case 5:occur(list);
+break;
+case 6:foccur(list);
+break;
+case 7:large(list);
+break;
+case 8:even(list);
+break;
+case 9:list1=create1(list1);
+check(list,list1);
+break;
+
+}
+}while(ch<10);
+}
