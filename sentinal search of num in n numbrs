@@ -1,0 +1,34 @@
+#include<stdio.h>
+int main()
+{
+int i,n,flag=0,key,a[100];
+int search(int a[100],int n);
+
+printf("enter limit");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+printf("enter n numbers");
+scanf("%d",&a[i]);
+}
+if(search(a,n)==-1)
+printf("not found");
+else
+printf("found=%d",i);
+}
+int search(int a[100],int n)
+{
+int key,i;
+printf("enter a key");
+scanf("%d",&key);
+a[n]=key;
+while(a[i]!=key)
+{
+i++;
+}
+if(i==n)
+{
+return -1;
+}
+return i;
+}
