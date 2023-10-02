@@ -1,0 +1,78 @@
+/*
+Q2. Write a program that checks whether a string of characters is palindrome
+or not. The function should use a stack library (cststack.h) of stack of
+characters using a static implementation of the stack.
+[20]*/
+
+
+#include<stdio.h>
+#define max 5
+struct stack
+{
+int data[max];
+int top;
+}s;
+void init()
+{
+s.top=-1;
+}
+int isfull()
+{
+if(s.top==max-1)
+return 1;
+else 
+return 0;
+}
+int isempty()
+{
+if(s.top==-1)
+return 1;
+else
+return 0;
+}
+void push(char c)
+{
+if(isfull())
+printf("dont push its full");
+else
+{
+s.top++;
+s.data[s.top]=c;
+}
+}
+char pop()
+{ char val;
+if(isempty())
+printf("its empty dont pop");
+else
+{
+val=s.data[s.top];
+s.top--;
+return val;
+}
+}
+
+int main()
+{
+char s1[20];
+int i;
+init();
+printf("enter string");
+gets(s1);
+for(i=0;s1[i]!='\0';i++)
+{
+push(s1[i]);
+}
+for(i=0;s1[i]!='\0';i++)
+{
+if(s1[i]!=pop())
+break;
+}
+if(isempty())
+
+printf("string is palindrome");
+
+else
+printf("not palindrome");
+
+}
