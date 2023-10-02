@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+int data;
+struct node *next;
+}node;
+
+#define nodealloc (node *)malloc(sizeof(node));
+node *create(node *list)
+{
+int i,n;
+node *newnode,*temp;
+printf("enter limit ");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+newnode=nodealloc;
+printf("enter n values");
+scanf("%d",&newnode->data);
+if(list==NULL)
+{
+list=temp=newnode;
+}
+else
+{
+temp->next=newnode;
+temp=newnode;
+}
+}return list;
+}
+node *disp(node *list)
+{
+node *temp;
+printf("linked list is");
+for(temp=list;temp!=NULL;temp=temp->next)
+{
+printf("%d\t",temp->data);
+}
+temp=list;
+}
+int main()
+{
+node *list=NULL;
+int ch;
+do
+{
+printf("enter choice\n1.create\n2.disp\n");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:list=create(list);
+break;
+case 2:disp(list);
+break;
+}
+}while(ch<3);
+}
