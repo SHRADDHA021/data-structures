@@ -1,0 +1,33 @@
+/*
+Q1. Create a random array of n integers. Accept a value x from user and use
+linear search algorithm to check whether the number is present in the
+array or not and output the position if the number is present.
+[10]*/
+
+
+#include<stdio.h>
+int main()
+{
+int a[50],flag=0,i,num,n;
+printf("enter limit");
+scanf("%d",&n);
+printf("enter n numbers");
+for(i=0;i<n;i++)
+{
+scanf("%d",&a[i]);
+}
+printf("enter numto search");
+scanf("%d",&num);
+for(i=0;i<n;i++)
+{
+if(a[i]==num)
+{
+flag=1;
+break;
+}
+}
+if (flag==1)
+printf("num is found at position=%d",i);
+else
+printf("num is not found");
+}
