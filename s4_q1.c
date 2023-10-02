@@ -1,3 +1,10 @@
+/*Q1. Read the ‘n’ numbers from user and sort using bubble sort.
+[10]*/
+
+
+
+
+
 #include<stdio.h>
 #include <stdlib.h>
 struct node
