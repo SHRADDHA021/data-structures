@@ -1,0 +1,78 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+ int data;
+ struct node *next;
+}node;
+
+#define nodealloc (node *)malloc(sizeof(node))
+node *create(node *list)
+{ 
+    node *temp,*newnode;
+    int i,n;
+    printf("enter limit");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+       newnode=nodealloc;
+       printf("enter val in newnode");
+       scanf("%d",&newnode->data);
+    if(list==NULL)
+    {
+       temp=list=newnode;
+    }
+    else
+    {
+       temp->next=newnode;
+       temp=newnode;
+    }
+    
+    }return list;
+
+}
+node *sort(node *list)
+{
+  int t;
+  node *temp,*temp1;
+  for(temp=list;temp!=NULL;temp=temp->next)
+  {
+    for(temp1=temp->next;temp1!=NULL;temp1=temp1->next)
+    {
+       if(temp->data>temp1->data)
+       {
+          t=temp->data;
+          temp->data=temp1->data;
+          temp1->data=t;
+       }
+    }
+  }return list;
+}
+node *disp(node *list)
+{
+  node *temp;
+  for(temp=list;temp!=NULL;temp=temp->next)
+  {
+     printf("%d\t",temp->data);
+  }
+}
+int main()
+{
+ int ch;
+ node *list=NULL;
+ do
+ {
+     printf("\n1-create\n2-sort\n3-disp\nenter choice=\n");
+     scanf("%d",&ch);
+     switch(ch)
+     {
+         case 1:list=create(list);
+         break;
+         case 2:list=sort(list);
+         break;
+         case 3:disp(list);
+         break;
+     }
+ }while(ch<4);
+}
