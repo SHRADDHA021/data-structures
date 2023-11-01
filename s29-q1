@@ -1,0 +1,92 @@
+/*Q1.Implement a stack library (ststack.h) of integers using a static
+implementation of the stack and implementing the operations like init(S),
+S=push(S), and X=peek(S). Write a driver program that includes stack library
+and calls different stack operations.
+[10]*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+#define max 5
+ struct stack
+{
+ int data[max];
+ int top;
+}s;
+
+void init()
+{
+s.top=-1;
+}
+int isfull()
+{
+if(s.top==max-1)
+return 1;
+else 
+return 0;
+}
+int isempty()
+{
+if(s.top==-1)
+return 1;
+else
+return 0;
+}
+void push(int num)
+{
+ if(isfull())
+ {
+   printf("overflow");
+   exit(0);
+ }
+ else
+ {
+  s.top++;
+  s.data[s.top]=num;
+  printf("insert succ.....");
+ }
+}
+void pop()
+{
+int val;
+if(isempty())
+{
+printf("underflow");
+exit(0);
+}
+else
+{
+ val=s.data[s.top];
+ s.top--;
+ printf("del succ...=%d",val);
+}
+}
+void disp()
+{
+int i;
+for(i=s.top;i>=0;i--)
+{
+printf("%d\n",s.data[i]);
+}
+}
+int main()
+{
+init();
+int i,num,ch;
+do
+{
+printf("\nenter choice\n1-insert\n2-pop\n3-disp=");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:printf("enter num");
+       scanf("%d",&num);
+       push(num);
+       break;
+case 2:pop();
+break;
+case 3:disp();
+break;
+}
+}while(ch<3);
+}
