@@ -1,0 +1,73 @@
+/*Q2.Read the data from the file “employee.txt” and sort on names in alphabetical
+order (use strcmp) using bubble sort and selection sort.
+[20]*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct emp
+{
+ char ename[20];
+}e1[20],t;
+void bubble(struct  emp e1[],int n)
+{
+ int pass,i;
+ for(pass=1;pass<n;pass++)
+  {
+    for(i=0;i<n-pass;i++)
+    {
+      if(strcmp(e1[i].ename,e1[i+1].ename)<0)
+      {
+        t=e1[i];
+        e1[i]=e1[i+1];
+        e1[i+1]=t;
+      }
+    }
+  } 
+    printf("bubble sort=");
+    for(i=0;i<n;i++)
+    {
+      printf("\n%s",e1[i].ename);
+    }
+}
+void insertion(struct emp e1[],int n)
+{
+ int j,index,i;
+ char key[20];
+ for(i=1;i<n;i++)
+ {
+  strcpy(key,e1[i].ename);
+  
+   for(j=i-1;j>=0 && strcmp(key,e1[j].ename)<0;j--)
+   {
+     t=e1[j];
+     e1[j]=e1[j+1];
+     e1[j+1]=t;
+   }
+ }
+ printf("\ninsertion sort");
+ for(i=0;i<n;i++)
+ {
+  printf("%s\n",e1[i].ename);
+ }
+}
+int main()
+{
+ int i=0,n;
+ FILE *fp1;
+ fp1=fopen("employee.txt","r");
+ if(fp1==NULL)
+ {
+   printf("file not found");
+   exit(0);
+ }
+ while(!feof(fp1))
+ {
+  fscanf(fp1,"%s",&e1[i].ename);
+   i++; 
+ }
+ n=i-1;
+ bubble(e1,n);
+ insertion(e1,n);
+ fclose(fp1);
+}
