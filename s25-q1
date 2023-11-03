@@ -1,0 +1,82 @@
+/*Q1. Implement a circular queue library (cir_queue.h) of integers using a
+dynamic (circular linked list) implementation of the queue and implementing
+the operations like init (Q), AddQueue(Q, x) and isEmpty (Q). Write a menu
+driven program that includes queue library and calls different queue operations.
+[10]*/
+
+#include<stdio.h>
+#include<stdlib.h>
+ struct node
+{
+ int data;
+ struct node *next;
+}*front,*rear,*temp,*newnode; 
+void init()
+{ 
+front=rear=NULL;
+}
+int isempty()
+{
+if(front==NULL)
+return 1;
+else
+return 0;
+}
+void insert()
+{
+newnode=(struct node *)malloc(sizeof(struct node));
+printf("enter value");
+scanf("%d",&newnode->data);
+if(isempty())
+{
+front=rear=newnode;
+}
+else
+{
+rear->next=newnode;
+rear=newnode;
+printf("insert succ...");
+}
+}
+void del()
+{
+int val;
+if(isempty())
+{
+printf("underflow");
+}
+else
+{
+val=front->data;
+temp=front;
+front=front->next;
+free(temp);
+printf("\n%d",val);
+}
+}
+void disp()
+{
+temp=front;
+for(temp=front;temp!=NULL;temp=temp->next)
+{
+printf("%d\t",temp->data);
+}
+}
+int main()
+{
+int ch;
+init();
+do
+{
+printf("\nenter choice\n1-enqueue\n2-dequeue\n3-disp=\t");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:insert();
+break;
+case 2:del();
+break;
+case 3:disp();
+}
+}while(ch<4);
+}
