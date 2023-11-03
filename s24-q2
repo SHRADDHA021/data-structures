@@ -1,0 +1,79 @@
+/*Q2. Read the data from the file “employee.txt” and sort on names in
+alphabetical order (use strcmp) using insertion sort and selection sort.
+[20]*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct emp
+{
+char ename[20];
+int age;
+}e1[20],t;
+void insertion(struct emp e1[],int n)
+{
+ int j,index,i;
+ char key[20];
+ for(i=1;i<n;i++)
+ {
+  strcpy(key,e1[i].ename);
+  
+   for(j=i-1;j>=0 && strcmp(key,e1[j].ename)<0;j--)
+   {
+     t=e1[j];
+     e1[j]=e1[j+1];
+     e1[j+1]=t;
+   }
+ }
+ printf("\ninsertion sort\n");
+ for(i=0;i<n;i++)
+ {
+  printf("%s\t%d\n",e1[i].ename,e1[i].age);
+ }
+}
+void selection(struct emp e1[],int n)
+{
+int i,j,index;
+char min[20];
+for(i=0;i<n;i++)
+{
+strcpy(min,e1[i].ename);
+index=i;
+for(j=i+1;j<n;j++)
+{
+  if(strcmp(e1[i].ename,min)<0)
+  {
+  strcpy(min,e1[j].ename);
+  index=j;
+  }
+}
+t=e1[i];
+e1[i]=e1[index];
+e1[index]=t;
+}
+printf("\nselction\n");
+for(i=0;i<n;i++)
+{
+printf("\n%s\t%d",e1[i].ename,e1[i].age);
+}
+}
+int main()
+{
+FILE *fp1;
+int i,n;
+fp1=fopen("employee.txt","r");
+if(fp1==NULL)
+{
+printf("file not found");
+exit(0);
+}
+while(!feof(fp1))
+{
+fscanf(fp1,"%s%d",&e1[i].ename,&e1[i].age);
+i++;
+}
+n=i-1;
+insertion(e1,n);
+selection(e1,n);
+fclose(fp1);
+}
