@@ -1,0 +1,42 @@
+/*Q1. Sort a random array of n integers (accept the value of n from user) in
+ascending order by using selection sort algorithm
+[10]*/
+
+#include<stdio.h>
+void sentinal(int a[],int n)
+{
+int i,j,min,t,index;
+for(i=0;i<n;i++)
+{
+min=a[i];
+index=i;
+for(j=i+1;j<n;j++)
+{
+if(a[j]<min)
+{
+min=a[i];
+index=j;
+}
+}
+t=a[i];
+a[i]=a[index];
+a[index]=t;
+}
+printf("\nselection=\n");
+for(i=0;i<n;i++)
+{
+printf("%d\t",a[i]);
+}
+}
+int main()
+{
+int a[20],i,n;
+printf("enter limit");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+printf("enter value");
+scanf("%d",&a[i]);
+}
+sentinal(a,n);
+}
