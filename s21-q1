@@ -1,0 +1,55 @@
+/*Q1. Write a program that reverses a string of characters. The function should
+use a stack library(cststack.h). Use a static implementation of the stack. [10]*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define max 5
+ struct stack
+{
+char data[max];
+int top;
+}s1;
+void init()
+{
+s1.top=-1;
+}
+int isfull()
+{
+if(s1.top==max-1)
+return 1;
+else
+return 0;
+}
+void push(char c)
+{
+if(isfull())
+printf("overflow");
+else
+{
+s1.top++;
+s1.data[s1.top]=c;
+}
+}
+void disp()
+{
+int i;
+for(i=s1.top;i>=0;i--)
+{
+printf("%c",s1.data[i]);
+}
+}
+int main()
+{
+int i;
+char c[20];
+init();
+printf("enter string");
+gets(c);
+for(i=0;c[i]!='\0';i++)
+{
+push(c[i]);
+}
+printf("reverse string\t");
+disp();
+}
