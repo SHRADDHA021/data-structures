@@ -1,0 +1,82 @@
+/*Q2. There are lists where new elements are always appended at the end of the
+list. The list can be implemented as a circular list with the external pointer
+pointing to the last element of the list. Implement singly linked circular list of
+integers with append and display operations. The operation append(L, n),
+appends to the end of the list, n integers either accepted from user or randomly
+generated.
+[20]*/
+
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+int data;
+struct node *next;
+}node;
+#define nodealloc (node *)malloc(sizeof(node *));
+node *create(node *list)
+{
+node *temp,*newnode;
+int i,n;
+printf("enter limit");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+newnode=nodealloc;
+printf("enter vallue");
+scanf("%d",&newnode->data);
+if(list==NULL)
+{
+list=temp=newnode;
+list->next=list;
+}
+else
+{
+temp->next=newnode;
+temp=newnode;
+newnode->next=list;
+}
+}return list;
+}
+void disp(node *list)
+{
+node *temp;
+temp=list;
+do
+{
+printf("%d\t",temp->data);
+temp=temp->next;
+}while(temp!=list);
+}
+node *append(node *list,int num)
+{
+node *newnode,*temp;
+newnode=nodealloc;
+newnode->data=num;
+temp=list;
+for(temp=list;temp->next!=list;temp=temp->next);
+temp->next=newnode;
+newnode->next=list;
+return list;
+}
+int main()
+{
+node *list=NULL;
+int num,ch;
+do
+{
+printf("enter choice\n1-create\n2-disp\n3-append=\t");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:list=create(list);
+break;
+case 2:disp(list);
+break;
+case 3:printf("enter num");
+       scanf("%d",&num);
+       list=append(list,num);
+break;
+}
+}while(ch<4);
+}
