@@ -1,0 +1,63 @@
+/*Q2. Read the data from file ‘sortedcities.txt’ containing sorted names of cities
+and their STD codes. Accept a name of the city from user and use binary search
+algorithm to check whether the name is present in the file and output the STD
+code, otherwise output “city not in the list”.
+[20]*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct cities
+{
+int code;
+char cname[20];
+}c1[20],t;
+void binary(int low,int high)
+{
+int i,top,mid,flag;
+char name[20];
+printf("enter name to search");
+scanf("%s",&name);
+while(low<=high)
+{
+mid=(low+high)/2;
+if(strcmp(c1[mid].cname,name)==0)
+{
+flag=1;
+break;
+}
+if(strcmp(c1[mid].cname,name)<0)
+{
+low=mid+1;
+}
+else
+{
+high=mid-1;
+}
+}
+if(flag==1)
+{
+printf("stdcode=%d",c1[mid].code);
+}
+else
+printf("not found");
+}
+int main()
+{
+FILE *fp1;
+int i,n;
+fp1=fopen("sortedemp.txt","r");
+if(fp1==NULL)
+{
+printf("file not found");
+exit(0);
+}
+while(!feof(fp1))
+{
+fscanf(fp1,"%s%d",&c1[i].cname,&c1[i].code);
+i++;
+}
+n=i-1;
+binary(0,n);
+fclose(fp1);
+}
