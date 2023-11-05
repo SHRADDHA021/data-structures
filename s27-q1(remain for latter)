@@ -1,0 +1,67 @@
+/*Q1. Write a program that adds two single variablepolynomials. Each
+polynomial should be represented as a list with linked list implementation.
+[10]*/
+
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+int coef,pow;
+struct node *next;
+}node;
+#define nodealloc (node *)malloc(sizeof(node *));
+node *create(node *list)
+{
+int i,num,n;
+node *temp,*newnode;
+printf("enter limit");
+scanf("%d",&n);
+for(i=n-1;i>=0;i--)
+{
+newnode=nodealloc;
+printf("enter coef ");
+scanf("%d",&newnode->coef);
+newnode->pow=i;
+newnode->next=NULL;
+if(list==NULL)
+{
+list=temp=newnode;
+newnode->next=NULL;
+}
+else
+{
+temp->next=newnode;
+temp=newnode;
+}
+}return list;
+}
+
+node *disp(node *list)
+{
+node *temp;
+for(temp=list;temp!=NULL;temp=temp->next)
+{
+printf("%d^%d\t",temp->coef,temp->pow);
+}
+} 
+node *add(node *list1,node *)
+int main()
+{
+node *list1=NULL,*list2=NULL;
+int ch;
+do
+{
+printf("\n1-craete\n2-disp\t");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:list1=create(list1);
+break;
+case 2:list2=create(list2);
+break;
+case 3:add(list1,list2);
+break;
+case 4:disp(list);
+}
+}while(ch<3);
+}
